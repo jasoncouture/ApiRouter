@@ -1,6 +1,6 @@
 using System;
 
-namespace ApiRouter.Core
+namespace ApiRouter.Core.Interfaces
 {
     public interface IWeakCache
     {

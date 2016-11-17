@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ApiRouter.Core.Interfaces;
 using Castle.Core.Logging;
 using Consul;
 using Newtonsoft.Json;

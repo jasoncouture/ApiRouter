@@ -1,11 +1,12 @@
 using System.Web.Http;
+using ApiRouter.Core.Interfaces;
 using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Newtonsoft.Json;
 
-namespace ApiRouter.Core
+namespace ApiRouter.Core.Installers
 {
     public class ComponentsInstaller : IWindsorInstaller
     {

@@ -126,15 +126,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Router.cs" />
-    <Compile Include="ComponentsInstaller.cs" />
+    <Compile Include="Installers\ComponentsInstaller.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="ConsulInstaller.cs" />
+    <Compile Include="Installers\ConsulInstaller.cs" />
     <Compile Include="ConsulServiceResolver.cs" />
-    <Compile Include="ContainerInstaller.cs" />
-    <Compile Include="IConfiguration.cs" />
-    <Compile Include="IServiceParser.cs" />
-    <Compile Include="IServiceResolver.cs" />
-    <Compile Include="IWeakCache.cs" />
+    <Compile Include="Installers\ContainerInstaller.cs" />
+    <Compile Include="Interfaces\IConfiguration.cs" />
+    <Compile Include="Interfaces\IServiceParser.cs" />
+    <Compile Include="Interfaces\IServiceResolver.cs" />
+    <Compile Include="Interfaces\IWeakCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyHandler.cs" />
     <Compile Include="RequestRouterConfiguration.cs" />

@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ApiRouter.Core
+namespace ApiRouter.Core.Interfaces
 {
     public interface IConfiguration
     {

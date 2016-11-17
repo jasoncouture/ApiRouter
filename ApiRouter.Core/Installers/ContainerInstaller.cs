@@ -5,7 +5,7 @@ using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace ApiRouter.Core
+namespace ApiRouter.Core.Installers
 {
     public class ContainerInstaller : IWindsorInstaller
     {

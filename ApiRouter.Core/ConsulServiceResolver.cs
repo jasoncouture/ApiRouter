@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using ApiRouter.Core.Interfaces;
 using Castle.Components.DictionaryAdapter;
 using Castle.Core.Logging;
 using Consul;

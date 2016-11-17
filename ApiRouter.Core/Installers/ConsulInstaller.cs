@@ -1,9 +1,10 @@
+using ApiRouter.Core.Interfaces;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Consul;
 
-namespace ApiRouter.Core
+namespace ApiRouter.Core.Installers
 {
     public class ConsulInstaller : IWindsorInstaller
     {

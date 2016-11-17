@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ApiRouter.Core.Interfaces;
 using Consul;
 
 namespace ApiRouter.Core

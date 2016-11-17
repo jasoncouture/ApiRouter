@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using ApiRouter.Core.Interfaces;
 using Castle.Core.Logging;
 
 namespace ApiRouter.Core
