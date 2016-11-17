@@ -9,9 +9,14 @@ namespace ApiRouter.Core
 {
     public static class Router
     {
-        public static IDisposable Start(string url)
+        public static IDisposable Start(int? port = null)
         {
-            return WebApp.Start<Startup>(url);
+            var options = new StartOptions()
+            {
+                ServerFactory = "Nowin",
+                Port = port
+            };
+            return WebApp.Start<Startup>(options);
         }
     }
 }

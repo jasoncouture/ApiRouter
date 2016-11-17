@@ -11,7 +11,7 @@ namespace ApiRouter.Console
     {
         static void Main(string[] args)
         {
-            using (Router.Start("http://+:8080/"))
+            using (Router.Start(8081))
             {
                 System.Console.ReadLine();
             }
