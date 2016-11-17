@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRouter.Console", "ApiRouter.Console\ApiRouter.Console.csproj", "{34D28991-6234-4203-AAF3-F6BF75351D4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRouter.Core", "ApiRouter.Core\ApiRouter.Core.csproj", "{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRouter.Console", "ApiRouter.Console\ApiRouter.Console.csproj", "{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34D28991-6234-4203-AAF3-F6BF75351D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34D28991-6234-4203-AAF3-F6BF75351D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34D28991-6234-4203-AAF3-F6BF75351D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34D28991-6234-4203-AAF3-F6BF75351D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

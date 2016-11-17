@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ApiRouter.Console")]
+[assembly: AssemblyTitle("ApiRouter.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ApiRouter.Console")]
+[assembly: AssemblyProduct("ApiRouter.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ce3a4dce-bff5-411a-a67a-f93863d2b13d")]
+[assembly: Guid("fa8f036d-16f3-46b7-af34-e6e9c44446c4")]
 
 // Version information for an assembly consists of the following four values:
 //

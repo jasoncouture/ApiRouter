@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE3A4DCE-BFF5-411A-A67A-F93863D2B13D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApiRouter.Console</RootNamespace>
-    <AssemblyName>ApiRouter.Console</AssemblyName>
+    <RootNamespace>ApiRouter.Core</RootNamespace>
+    <AssemblyName>ApiRouter.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -128,11 +125,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Router.cs" />
+    <Compile Include="ComponentsInstaller.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ConsulInstaller.cs" />
+    <Compile Include="ConsulServiceResolver.cs" />
+    <Compile Include="ContainerInstaller.cs" />
+    <Compile Include="IConfiguration.cs" />
+    <Compile Include="IServiceParser.cs" />
+    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="IWeakCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyHandler.cs" />
+    <Compile Include="RequestRouterConfiguration.cs" />
+    <Compile Include="ServiceHeartbeatModule.cs" />
+    <Compile Include="ServiceParser.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="WeakCache.cs" />
+    <Compile Include="WebApiConfigurationStartupModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -140,12 +153,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ApiRouter.Core\ApiRouter.Core.csproj">
-      <Project>{fa8f036d-16f3-46b7-af34-e6e9c44446c4}</Project>
-      <Name>ApiRouter.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
