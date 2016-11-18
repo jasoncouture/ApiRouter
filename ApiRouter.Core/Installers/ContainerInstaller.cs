@@ -11,8 +11,6 @@ namespace ApiRouter.Core.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true));
-            container.AddFacility<LoggingFacility>(f => f.UseNLog());
             container.Register(Component.For<IWindsorContainer>().Instance(container).LifestyleSingleton());
         }
     }

@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ApiRouter.Core.Config.Models;
 using ApiRouter.Core.Interfaces;
 using Castle.Core.Logging;
 using Consul;
@@ -80,6 +82,31 @@ namespace ApiRouter.Core
             }
 
             return ret.ToString();
+        }
+
+        public async Task<RequestRouterConfiguration> GetConfigurationForRequest(RouterConfiguration configuration, HttpRequestMessage requestMessage)
+        {
+            var localConfigs = new List<ConfigContainer>((configuration.Config ?? new List<ConfigContainer>()).Where(i => i.Rule != null && i.Route != null));
+            foreach (var config in localConfigs)
+            {
+                try
+                {
+                    if (await config.IsMatch(requestMessage))
+                        return config.Route;
+                }
+                catch(Exception ex)
+                {
+                    Logger.Warn($"Failed to handle a rule due to an exception, Bad configuration?", ex);
+                }
+            }
+
+            var route = localConfigs.FirstOrDefault(i => i.Default)?.Route;
+            if (route == null)
+            {
+                Logger.Error($"No configuration found!");
+                throw new NoConfigurationMatchException();
+            }
+            return route;
         }
 
         private string GetCacheKey(HttpRequestMessage request)

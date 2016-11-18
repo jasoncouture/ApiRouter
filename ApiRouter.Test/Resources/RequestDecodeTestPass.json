@@ -1,0 +1,46 @@
+{
+  "nodeConfig": {
+	  "cluster":  "cluster" 
+  }, 
+  "routingConfig": [
+    {
+      "rule": {
+        "type": "host",
+        "host": "www.google.com"
+      },
+      "route": {
+        "host": "www.google.com",
+        "port": 443,
+        "scheme": "https"
+      },
+      "default": false
+    },
+    {
+      "rule": null,
+      "route": {
+        "service": "consului"
+      },
+      "default": true
+    },
+    {
+      "rule": {
+        "type": "any",
+        "children": [
+          {
+            "type": "host",
+            "hosts": [ "*.nightowlautoshop.com", "nightowl.pssproducts.com" ]
+          },
+          {
+            "type": "pathPrefix",
+            "prefix": "/"
+          }
+        ]
+      },
+      "route": {
+        "service": "nightowl-dev",
+        "tag": null
+      },
+      "default": false
+    }
+  ]
+}

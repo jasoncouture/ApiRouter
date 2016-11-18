@@ -10,11 +10,7 @@ namespace ApiRouter.Core
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            appBuilder.UseWindsor(c =>
-            {
-                c.Container.AddFacility<StartableFacility>(f => f.DeferredStart());
-                c.Container.Install(FromAssembly.This());
-            });
+            appBuilder.UseWindsor(Router.LazyContainer.Value, c => { });
             appBuilder.UseWebApi();
         }
     }

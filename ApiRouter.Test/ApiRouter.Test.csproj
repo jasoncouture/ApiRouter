@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FA8F036D-16F3-46B7-AF34-E6E9C44446C4}</ProjectGuid>
+    <ProjectGuid>{7BCF3857-D49A-4C3D-A5B7-FDB7569CF32C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApiRouter.Core</RootNamespace>
-    <AssemblyName>ApiRouter.Core</AssemblyName>
+    <RootNamespace>ApiRouter.Test</RootNamespace>
+    <AssemblyName>ApiRouter.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,6 +99,10 @@
       <HintPath>..\packages\Nowin.0.23.0\lib\net45\Nowin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
@@ -129,41 +134,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Attributes\DirectiveNameAttribute.cs" />
-    <Compile Include="Config\JsonConverters\ConfigurationDirectiveConverter.cs" />
-    <Compile Include="Config\Models\AllConfigurationEntry.cs" />
-    <Compile Include="Config\Models\AnyConfigurationEntry.cs" />
-    <Compile Include="Config\Models\ConfigContainer.cs" />
-    <Compile Include="Config\Models\ConfigurationEntry.cs" />
-    <Compile Include="Config\Models\HostConfiguration.cs" />
-    <Compile Include="Config\Models\HostExpression.cs" />
-    <Compile Include="Config\Models\HttpMethodConfiguration.cs" />
-    <Compile Include="Config\Models\NoConfigurationMatchException.cs" />
-    <Compile Include="Config\Models\PathPrefixConfiguration.cs" />
-    <Compile Include="Config\Models\PathRegularExpressionConfiguration.cs" />
-    <Compile Include="Config\Models\RouterConfiguration.cs" />
-    <Compile Include="Interfaces\IRequestHandler.cs" />
-    <Compile Include="Interfaces\IRequestHandlerModule.cs" />
-    <Compile Include="Router.cs" />
-    <Compile Include="Installers\ComponentsInstaller.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Installers\ConsulInstaller.cs" />
-    <Compile Include="ConsulServiceResolver.cs" />
-    <Compile Include="Installers\ContainerInstaller.cs" />
-    <Compile Include="Interfaces\IConfiguration.cs" />
-    <Compile Include="Interfaces\IServiceParser.cs" />
-    <Compile Include="Interfaces\IServiceResolver.cs" />
-    <Compile Include="Interfaces\IWeakCache.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyHandler.cs" />
-    <Compile Include="RequestRouterConfiguration.cs" />
-    <Compile Include="ServiceHeartbeatModule.cs" />
-    <Compile Include="ServiceParser.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="WeakCache.cs" />
-    <Compile Include="WebApiConfigurationStartupModule.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\RequestDecodeTestPass.json" />
     <None Include="app.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -174,7 +154,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Config\Parser\" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiRouter.Core\ApiRouter.Core.csproj">
+      <Project>{fa8f036d-16f3-46b7-af34-e6e9c44446c4}</Project>
+      <Name>ApiRouter.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

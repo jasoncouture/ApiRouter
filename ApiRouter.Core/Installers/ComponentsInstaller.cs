@@ -1,4 +1,5 @@
 using System.Web.Http;
+using ApiRouter.Core.Config.JsonConverters;
 using ApiRouter.Core.Interfaces;
 using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
@@ -12,15 +13,17 @@ namespace ApiRouter.Core.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<ProxyHandler>().ImplementedBy<ProxyHandler>().LifestyleSingleton());
-            container.Register(Component.For<IServiceParser>().ImplementedBy<ServiceParser>().LifestyleSingleton());
-            container.Register(Component.For<HttpConfiguration>().ImplementedBy<HttpConfiguration>());
-            container.Register(Component.For<WebApiConfigurationStartupModule>().ImplementedBy<WebApiConfigurationStartupModule>().StartUsingMethod(t => t.Start));
-            container.Register(Component.For<ServiceHeartbeatModule>().ImplementedBy<ServiceHeartbeatModule>().StartUsingMethod(t => t.Start).StopUsingMethod(t => t.Stop));
-            container.Register(Component.For<JsonSerializerSettings>().ImplementedBy<JsonSerializerSettings>().LifestyleSingleton());
-            container.Register(Component.For<JsonSerializer>().UsingFactoryMethod(kernel => JsonSerializer.Create(kernel.Resolve<JsonSerializerSettings>())).LifestyleTransient());
-            container.Register(Component.For<IWeakCache>().ImplementedBy<WeakCache>().LifestyleSingleton());
-            container.Register(Component.For<IConfiguration>().ImplementedBy<Configuration>().LifestyleSingleton());
+            container
+                .Register(Component.For<JsonConverter>().ImplementedBy<ConfigurationDirectiveConverter>().LifestyleSingleton())
+                .Register(Component.For<ProxyHandler>().ImplementedBy<ProxyHandler>().LifestyleSingleton())
+                .Register(Component.For<IServiceParser>().ImplementedBy<ServiceParser>().LifestyleSingleton())
+                .Register(Component.For<HttpConfiguration>().ImplementedBy<HttpConfiguration>())
+                .Register(Component.For<WebApiConfigurationStartupModule>().ImplementedBy<WebApiConfigurationStartupModule>().StartUsingMethod(t => t.Start))
+                .Register(Component.For<ServiceHeartbeatModule>().ImplementedBy<ServiceHeartbeatModule>().StartUsingMethod(t => t.Start).StopUsingMethod(t => t.Stop))
+                .Register(Component.For<JsonSerializerSettings>().ImplementedBy<JsonSerializerSettings>().LifestyleSingleton())
+                .Register(Component.For<JsonSerializer>().UsingFactoryMethod(kernel => JsonSerializer.Create(kernel.Resolve<JsonSerializerSettings>())).LifestyleTransient())
+                .Register(Component.For<IWeakCache>().ImplementedBy<WeakCache>().LifestyleSingleton())
+                .Register(Component.For<IConfiguration>().ImplementedBy<Configuration>().LifestyleSingleton());
         }
     }
 }
