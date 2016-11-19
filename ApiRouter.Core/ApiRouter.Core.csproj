@@ -129,8 +129,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Attributes\DirectiveNameAttribute.cs" />
+    <Compile Include="Config\Attributes\NamedAttribute.cs" />
     <Compile Include="Config\JsonConverters\ConfigurationDirectiveConverter.cs" />
+    <Compile Include="Config\JsonConverters\ReuqestRouterConfigurationConverter.cs" />
     <Compile Include="Config\Models\AllConfigurationEntry.cs" />
     <Compile Include="Config\Models\AnyConfigurationEntry.cs" />
     <Compile Include="Config\Models\ConfigContainer.cs" />
@@ -143,9 +144,18 @@
     <Compile Include="Config\Models\PathPrefixConfiguration.cs" />
     <Compile Include="Config\Models\PathRegularExpressionConfiguration.cs" />
     <Compile Include="Config\Models\RouterConfiguration.cs" />
-    <Compile Include="Handlers\RequestHandlerBase.cs" />
+    <Compile Include="ConsulServiceRouterConfiguration.cs" />
+    <Compile Include="Handlers\ConsulServiceRequestHandler.cs" />
+    <Compile Include="Handlers\HostRequestHandler.cs" />
+    <Compile Include="Handlers\RequestHandlerModuleBase.cs" />
+    <Compile Include="Handlers\ResponseCodeRequestHandler.cs" />
+    <Compile Include="HostRouterConfiguration.cs" />
+    <Compile Include="Interfaces\IConfigurationReader.cs" />
+    <Compile Include="Interfaces\IHttpClientFactory.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />
     <Compile Include="Interfaces\IRequestHandlerModule.cs" />
+    <Compile Include="RequestRouterConfigurationBase.cs" />
+    <Compile Include="ResponseCodeRouterConfiguration.cs" />
     <Compile Include="Router.cs" />
     <Compile Include="Installers\ComponentsInstaller.cs" />
     <Compile Include="Configuration.cs" />
