@@ -1,0 +1,44 @@
+[
+    {
+      "rule": {
+        "type": "host",
+        "host": "localhost"
+      },
+      "route": {
+        "type": "host", 
+        "host": "www.google.com",
+        "port": 443,
+        "scheme": "https",
+        "headers": { "Host": "www.google.com" }
+      },
+      "default": false
+    },
+    {
+      "rule": null,
+      "route": {
+        "type": "consulService",
+        "service": "consului"
+      },
+      "default": true
+    },
+    {
+      "rule": {
+        "type": "all",
+        "children": [
+          {
+            "hosts": [ "*.nightowlautoshop.com", "nightowl.pssproducts.com" ]
+          },
+          {
+            "type": "pathPrefix",
+            "prefix": "/"
+          }
+        ]
+      },
+      "route": {
+        "type": "consulService",
+        "service": "nightowl-dev",
+        "tag": null
+      },
+      "default": false
+    }
+  ]
