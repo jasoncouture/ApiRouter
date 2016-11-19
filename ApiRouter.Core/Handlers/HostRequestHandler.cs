@@ -6,6 +6,8 @@ using ApiRouter.Core.Interfaces;
 
 namespace ApiRouter.Core.Handlers
 {
+    // This will be removed later.
+
     public class HostRequestHandler : RequestHandlerModuleBase<HostRouterConfiguration>
     {
         private readonly IHttpClientFactory _httpClientFactory;

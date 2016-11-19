@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ApiRouter.Core.Config.Attributes;
 using ApiRouter.Core.Interfaces;
@@ -28,7 +29,7 @@ namespace ApiRouter.Core.Config.Models
             return type.GetCustomAttribute<NamedAttribute>()?.Name ?? type.Name;
         }
 
-        public abstract Task<bool> IsMatch(HttpRequestMessage request);
+        public abstract Task<bool> IsMatch(HttpRequestMessage request, CancellationToken cancellationToken);
         private static Dictionary<string, Type> _keyTypeMaps = null;
 
         public static Dictionary<string, Type> KeyTypeMaps => _keyTypeMaps ?? (_keyTypeMaps = GetKeyTypeMapsFromAssemblies(Assembly.GetExecutingAssembly()));

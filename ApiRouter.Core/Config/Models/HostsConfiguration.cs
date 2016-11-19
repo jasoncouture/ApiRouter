@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ApiRouter.Core.Config.Attributes;
 using Newtonsoft.Json;
@@ -13,17 +14,16 @@ namespace ApiRouter.Core.Config.Models
         [JsonProperty("hosts")]
         public string[] Hosts { get; set; }
 
-        public override Task<bool> IsMatch(HttpRequestMessage request)
+        public override Task<bool> IsMatch(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            var currentHost = request.RequestUri.Host;
+            if (string.IsNullOrEmpty(currentHost)) return Task.FromResult(false);
             var localHosts = Hosts.ToList();
-            foreach (var Host in localHosts)
+            foreach (var host in localHosts)
             {
-                var currentHost = request.Headers.Host.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries)
-                    .FirstOrDefault();
-                if (string.IsNullOrEmpty(currentHost)) continue;
-                if (Host.StartsWith("*")
-                    ? currentHost.EndsWith(Host.Substring(1), StringComparison.InvariantCultureIgnoreCase)
-                    : currentHost.Equals(Host, StringComparison.InvariantCultureIgnoreCase))
+                if (host.StartsWith("*")
+                    ? currentHost.EndsWith(host.Substring(1), StringComparison.InvariantCultureIgnoreCase)
+                    : currentHost.Equals(host, StringComparison.InvariantCultureIgnoreCase))
                     return Task.FromResult(true);
             }
 

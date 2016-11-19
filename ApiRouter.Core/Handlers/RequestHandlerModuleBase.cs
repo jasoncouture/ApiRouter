@@ -56,6 +56,9 @@ namespace ApiRouter.Core.Handlers
                 host = null;
             request.Headers.Host = host ?? configHost ?? (realTarget.IsDefaultPort ? realTarget.Host : $"{realTarget.Host}:{realTarget.Port}");
             request.RequestUri = realTarget;
+
+            if (request.Method == HttpMethod.Get)
+                request.Content = null;
             return request;
         }
 
