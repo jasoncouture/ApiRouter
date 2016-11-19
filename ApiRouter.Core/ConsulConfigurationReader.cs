@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ApiRouter.Core.Config.Models;
 using ApiRouter.Core.Interfaces;
+using Castle.Core.Logging;
 using Consul;
 using Newtonsoft.Json;
 
@@ -15,7 +16,7 @@ namespace ApiRouter.Core
     {
         private readonly IConsulClient _conulClient;
         private readonly JsonSerializer _serializer;
-
+        public ILogger Logger { get; set; } = NullLogger.Instance;
         public ConsulConfigurationReader(IConsulClient conulClient, JsonSerializer serializer)
         {
             _conulClient = conulClient;
@@ -39,23 +40,41 @@ namespace ApiRouter.Core
 
             configPathBuilder.Append("config");
 
-            var configResult = await _conulClient.KV.Get(configPathBuilder.ToString().ToLower(), cancellationToken);
-            if (configResult.StatusCode != HttpStatusCode.OK) throw new InvalidOperationException($"Configuration not found at config path: {configPathBuilder}");
+
+            QueryResult<KVPair> configResult = null;
+            configResult = await _conulClient.KV.Get(configPathBuilder.ToString().ToLower(), cancellationToken);
+            if (configResult.StatusCode != HttpStatusCode.OK)
+                throw new InvalidOperationException($"Configuration not found at config path: {configPathBuilder}");
             var modificationToken = configResult.Response.ModifyIndex;
             if (_modificationToken == modificationToken) return _configuration;
-            // The reason we don't do any locking here is Stale data is okay.
-            // Configuration during changes on the server may reuslt in inconsistencies, but this is expected in a distributed system.
-
-            using (var memoryStream = new MemoryStream(configResult.Response.Value))
-            using (var streamReader = new StreamReader(memoryStream, Encoding.UTF8))
-            using (var jsonReader = new JsonTextReader(streamReader))
+            lock (_lockObject)
             {
-                var config = _serializer.Deserialize<RouterConfiguration>(jsonReader);
-                _configuration = config;
-                _modificationToken = modificationToken;
-                return config;
+                configResult = _conulClient.KV.Get(configPathBuilder.ToString().ToLower(), cancellationToken).GetAwaiter().GetResult();
+                if (configResult.StatusCode != HttpStatusCode.OK)
+                    throw new InvalidOperationException(
+                        $"Configuration not found at config path: {configPathBuilder}");
+                modificationToken = configResult.Response.ModifyIndex;
+                if (_modificationToken == modificationToken) return _configuration;
+                using (var memoryStream = new MemoryStream(configResult.Response.Value))
+                using (var streamReader = new StreamReader(memoryStream, Encoding.UTF8))
+                using (var jsonReader = new JsonTextReader(streamReader))
+                {
+                    Logger.Info(
+                        _modificationToken != 0
+                            ? $"Configuration seems to have changed, modification token: {_modificationToken} does not match {modificationToken}, parsing new config."
+                            : $"Reading configuration, Modification token: {modificationToken}");
+                    var config = new RouterConfiguration();
+                    config.Config.AddRange(_serializer.Deserialize<ConfigContainer[]>(jsonReader));
+                    _configuration = config;
+                    _modificationToken = modificationToken;
+                    Logger.Info(
+                        $"Parsed new config with {config.Config.Count} block{(config.Config.Count == 1 ? "" : "s")}");
+                    return config;
+                }
             }
         }
+
+        private readonly object _lockObject = new object();
         private ulong _modificationToken = 0;
         private volatile RouterConfiguration _configuration = null;
     }

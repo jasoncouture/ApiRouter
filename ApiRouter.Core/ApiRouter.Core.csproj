@@ -168,13 +168,11 @@
     <Compile Include="Installers\ContainerInstaller.cs" />
     <Compile Include="Interfaces\IConfiguration.cs" />
     <Compile Include="Interfaces\IServiceResolver.cs" />
-    <Compile Include="Interfaces\IWeakCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyHandler.cs" />
     <Compile Include="RequestRouterConfiguration.cs" />
     <Compile Include="ServiceHeartbeatModule.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="WeakCache.cs" />
     <Compile Include="WebApiConfigurationStartupModule.cs" />
   </ItemGroup>
   <ItemGroup>
