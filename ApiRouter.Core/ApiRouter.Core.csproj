@@ -129,6 +129,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationStartupModule.cs" />
     <Compile Include="Config\Attributes\NamedAttribute.cs" />
     <Compile Include="Config\JsonConverters\ConfigurationDirectiveConverter.cs" />
     <Compile Include="Config\JsonConverters\ReuqestRouterConfigurationConverter.cs" />
@@ -162,11 +163,9 @@
     <Compile Include="ResponseCodeRouterConfiguration.cs" />
     <Compile Include="Router.cs" />
     <Compile Include="Installers\ComponentsInstaller.cs" />
-    <Compile Include="Configuration.cs" />
     <Compile Include="Installers\ConsulInstaller.cs" />
     <Compile Include="ConsulServiceResolver.cs" />
     <Compile Include="Installers\ContainerInstaller.cs" />
-    <Compile Include="Interfaces\IConfiguration.cs" />
     <Compile Include="Interfaces\IServiceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyHandler.cs" />

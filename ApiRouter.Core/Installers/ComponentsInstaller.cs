@@ -48,8 +48,8 @@ namespace ApiRouter.Core.Installers
                 .Register(Component.For<JsonSerializerSettings>().ImplementedBy<JsonSerializerSettings>().UsingFactoryMethod(CreateSerializerSettings).LifestyleSingleton())
                 .Register(Component.For<JsonConverter>().ImplementedBy<ConfigurationDirectiveConverter>().LifestyleSingleton())
                 .Register(Component.For<JsonConverter>().ImplementedBy<ReuqestRouterConfigurationConverter>().LifestyleSingleton())
+                .Register(Component.For<ConfigurationStartupModule>().ImplementedBy<ConfigurationStartupModule>().StartUsingMethod(i => i.Start))
                 .Register(Component.For<JsonSerializer>().UsingFactoryMethod(kernel => JsonSerializer.Create(kernel.Resolve<JsonSerializerSettings>())).LifestyleTransient())
-                .Register(Component.For<IConfiguration>().ImplementedBy<Configuration>().LifestyleSingleton())
                 .Register(Component.For<IRequestHandler>().ImplementedBy<RequestHandler>().LifestyleSingleton().Named("RequestHandler"))
                 .Register(Component.For<IConfigurationReader>().ImplementedBy<ConsulConfigurationReader>().LifestyleSingleton())
                 .Register(Classes.FromThisAssembly().BasedOn<IRequestHandlerModule>().WithServiceAllInterfaces().LifestyleSingleton());
