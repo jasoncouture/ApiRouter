@@ -137,11 +137,13 @@
     <Compile Include="Config\Models\ConfigurationEntry.cs" />
     <Compile Include="Config\Models\HostConfiguration.cs" />
     <Compile Include="Config\Models\HostExpression.cs" />
+    <Compile Include="Config\Models\HostsConfiguration.cs" />
     <Compile Include="Config\Models\HttpMethodConfiguration.cs" />
     <Compile Include="Config\Models\NoConfigurationMatchException.cs" />
     <Compile Include="Config\Models\PathPrefixConfiguration.cs" />
     <Compile Include="Config\Models\PathRegularExpressionConfiguration.cs" />
     <Compile Include="Config\Models\RouterConfiguration.cs" />
+    <Compile Include="Handlers\RequestHandlerBase.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />
     <Compile Include="Interfaces\IRequestHandlerModule.cs" />
     <Compile Include="Router.cs" />

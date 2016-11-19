@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ApiRouter.Core.Config.Models
 {
-    [DirectiveName("pathPrefix")]
+    [Named("pathPrefix")]
     public class PathPrefixConfiguration : ConfigurationEntry
     {
         [JsonProperty("prefix")]

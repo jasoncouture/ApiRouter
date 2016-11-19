@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ApiRouter.Core.Config.Models
 {
-    [DirectiveName("hostRegex")]
+    [Named("hostRegex")]
     public class HostExpression : ConfigurationEntry
     {
         [JsonProperty("hostRegex")]

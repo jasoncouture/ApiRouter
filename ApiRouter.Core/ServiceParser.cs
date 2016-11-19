@@ -84,7 +84,7 @@ namespace ApiRouter.Core
             return ret.ToString();
         }
 
-        public async Task<RequestRouterConfiguration> GetConfigurationForRequest(RouterConfiguration configuration, HttpRequestMessage requestMessage)
+        public async Task<RequestRouterConfigurationBase> GetConfigurationForRequest(RouterConfiguration configuration, HttpRequestMessage requestMessage)
         {
             var localConfigs = new List<ConfigContainer>((configuration.Config ?? new List<ConfigContainer>()).Where(i => i.Rule != null && i.Route != null));
             foreach (var config in localConfigs)

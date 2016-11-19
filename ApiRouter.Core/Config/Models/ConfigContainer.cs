@@ -9,7 +9,7 @@ namespace ApiRouter.Core.Config.Models
         [JsonProperty("rule")]
         public ConfigurationEntry Rule { get; set; }
         [JsonProperty("route")]
-        public RequestRouterConfiguration Route { get; set; }
+        public RequestRouterConfigurationBase Route { get; set; }
         [JsonProperty("default")]
         public bool Default { get; set; } = false;
         public async Task<bool> IsMatch(HttpRequestMessage request)

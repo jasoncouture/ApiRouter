@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Castle.Core;
 using Castle.Facilities.Logging;
 using Castle.Facilities.Startable;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
@@ -21,6 +22,7 @@ namespace ApiRouter.Core
         {
             var container = new WindsorContainer();
             container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true));
+            container.AddFacility<TypedFactoryFacility>();
             container.AddFacility<LoggingFacility>(f => f.UseNLog());
             container.AddFacility<StartableFacility>(f => f.DeferredStart());
             container.Install(FromAssembly.This());

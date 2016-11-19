@@ -7,7 +7,7 @@ namespace ApiRouter.Core.Interfaces
 {
     public interface IServiceResolver
     {
-        Task<DnsEndPoint> GetRandomEndpoint(RequestRouterConfiguration serviceConfig, CancellationToken cancellationToken);
-        Task<IEnumerable<DnsEndPoint>> GetAllEndpoints(RequestRouterConfiguration serviceConfig, CancellationToken cancellationToken);
+        Task<DnsEndPoint> GetRandomEndpoint(string service, string tag, CancellationToken cancellationToken);
+        Task<IEnumerable<DnsEndPoint>> GetAllEndpoints(string service, string tag, CancellationToken cancellationToken);
     }
 }

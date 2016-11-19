@@ -22,7 +22,7 @@ namespace ApiRouter.Core
             _weakCache = weakCache;
         }
 
-        private Uri CreateTargetUri(Uri sourceUri, RequestRouterConfiguration config, DnsEndPoint endPoint)
+        private Uri CreateTargetUri(Uri sourceUri, RequestRouterConfigurationBase config, DnsEndPoint endPoint)
         {
             var builder = new UriBuilder(sourceUri)
             {
@@ -50,7 +50,7 @@ namespace ApiRouter.Core
                     Logger.Warn($"No configuration could be found for this URI: {request.RequestUri}");
                     return responseMessage = request.CreateResponse(HttpStatusCode.NotFound, "Not Found");
                 }
-                var endpoint = await serviceResolver.GetRandomEndpoint(service, cancellationToken);
+                var endpoint = await serviceResolver.GetRandomEndpoint(service.Service, service.Tag, cancellationToken);
                 if (endpoint == null)
                 {
                     Logger.Warn($"No backend server is known for: {request.RequestUri}");

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ApiRouter.Core.Config.Models
 {
-    [DirectiveName("httpMethod")]
+    [Named("httpMethod")]
     public class HttpMethodConfiguration : ConfigurationEntry
     {
         [JsonProperty("methods")]

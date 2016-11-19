@@ -5,7 +5,7 @@ using ApiRouter.Core.Config.Attributes;
 
 namespace ApiRouter.Core.Config.Models
 {
-    [DirectiveName("all")]
+    [Named("all")]
     public sealed class AllConfigurationEntry : ConfigurationEntry
     {
         public List<ConfigurationEntry> Children { get; set; } = new List<ConfigurationEntry>();

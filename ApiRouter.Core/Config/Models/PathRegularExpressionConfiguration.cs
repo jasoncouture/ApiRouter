@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ApiRouter.Core.Config.Models
 {
-    [DirectiveName("pathRegex")]
+    [Named("pathRegex")]
     public class PathRegularExpressionConfiguration : ConfigurationEntry
     {
         [JsonProperty("pathRegex")]

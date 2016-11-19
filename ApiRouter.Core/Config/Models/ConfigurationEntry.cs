@@ -10,6 +10,7 @@ using ApiRouter.Core.Interfaces;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.Installer;
 using Newtonsoft.Json;
+using NamedAttribute = ApiRouter.Core.Config.Attributes.NamedAttribute;
 
 namespace ApiRouter.Core.Config.Models
 {
@@ -24,7 +25,7 @@ namespace ApiRouter.Core.Config.Models
 
         private static string GetName(Type type)
         {
-            return type.GetCustomAttribute<DirectiveNameAttribute>()?.Name ?? type.Name;
+            return type.GetCustomAttribute<NamedAttribute>()?.Name ?? type.Name;
         }
 
         public abstract Task<bool> IsMatch(HttpRequestMessage request);
