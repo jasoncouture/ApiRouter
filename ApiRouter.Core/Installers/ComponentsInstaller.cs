@@ -50,6 +50,7 @@ namespace ApiRouter.Core.Installers
                 .Register(Component.For<JsonConverter>().ImplementedBy<ReuqestRouterConfigurationConverter>().LifestyleSingleton())
                 .Register(Component.For<ConfigurationStartupModule>().ImplementedBy<ConfigurationStartupModule>().StartUsingMethod(i => i.Start))
                 .Register(Component.For<JsonSerializer>().UsingFactoryMethod(kernel => JsonSerializer.Create(kernel.Resolve<JsonSerializerSettings>())).LifestyleTransient())
+                .Register(Component.For<INodeConfigurationProvider>().ImplementedBy<NodeConfigurationProvider>().LifestyleSingleton())
                 .Register(Component.For<IRequestHandler>().ImplementedBy<RequestHandler>().LifestyleSingleton().Named("RequestHandler"))
                 .Register(Component.For<IConfigurationReader>().ImplementedBy<ConsulConfigurationReader>().LifestyleSingleton())
                 .Register(Classes.FromThisAssembly().BasedOn<IRequestHandlerModule>().WithServiceAllInterfaces().LifestyleSingleton());

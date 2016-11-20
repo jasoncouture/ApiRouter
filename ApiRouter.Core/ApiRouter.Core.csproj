@@ -142,8 +142,11 @@
     <Compile Include="Config\Models\HostsConfiguration.cs" />
     <Compile Include="Config\Models\HttpMethodConfiguration.cs" />
     <Compile Include="Config\Models\NoConfigurationMatchException.cs" />
+    <Compile Include="Config\Models\NodeConfiguration.cs" />
     <Compile Include="Config\Models\PathPrefixConfiguration.cs" />
     <Compile Include="Config\Models\PathRegularExpressionConfiguration.cs" />
+    <Compile Include="Config\Models\PortConfiguration.cs" />
+    <Compile Include="Config\Models\PortsConfiguration.cs" />
     <Compile Include="Config\Models\RouterConfiguration.cs" />
     <Compile Include="ConsulConfigurationReader.cs" />
     <Compile Include="ConsulServiceRouterConfiguration.cs" />
@@ -156,9 +159,11 @@
     <Compile Include="HostRouterConfiguration.cs" />
     <Compile Include="Interfaces\IConfigurationReader.cs" />
     <Compile Include="Interfaces\IHttpClientFactory.cs" />
+    <Compile Include="Interfaces\INodeConfigurationProvider.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />
     <Compile Include="Interfaces\IRequestHandlerFactory.cs" />
     <Compile Include="Interfaces\IRequestHandlerModule.cs" />
+    <Compile Include="NodeConfigurationProvider.cs" />
     <Compile Include="RequestRouterConfigurationBase.cs" />
     <Compile Include="ResponseCodeRouterConfiguration.cs" />
     <Compile Include="Router.cs" />

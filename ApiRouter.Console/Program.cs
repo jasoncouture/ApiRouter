@@ -11,7 +11,7 @@ namespace ApiRouter.Console
     {
         static void Main(string[] args)
         {
-            using (Router.Start(8081))
+            using (Router.Start())
             {
                 System.Console.ReadLine();
             }
